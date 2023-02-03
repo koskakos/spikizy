@@ -14,11 +14,11 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findUserByEmail(email);
     }
 
     public boolean addUser(User user) {
-        if(userRepository.findByEmail(user.getEmail()) != null) return false;
+        if(userRepository.findUserByEmail(user.getEmail()) != null) return false;
         user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
