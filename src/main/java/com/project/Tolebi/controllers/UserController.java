@@ -27,6 +27,6 @@ public class UserController {
         userService.addUser(user);
 
         model.addAttribute("user", user);
-        return "redirect:/authorized";
+        return "redirect:/";
     }
 }
