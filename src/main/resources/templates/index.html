@@ -116,6 +116,7 @@
                 <input type="text" placeholder=" Email" name="email">
                 <input type="text" placeholder=" Password" name="password">
                 <input type="text" placeholder=" Password again">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input type="submit" class="log__button" value="Sign up">
             </form>
 

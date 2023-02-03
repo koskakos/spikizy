@@ -20,9 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailService userDetailsService;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http//.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/css/**", "/Elements/**", "/images/**", "/js/**","/video/**")
+                .antMatchers("/css/**", "/Elements/**", "/images/**", "/js/**","/video/**", "/register")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
