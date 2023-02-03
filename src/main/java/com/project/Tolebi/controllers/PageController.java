@@ -3,6 +3,8 @@ package com.project.Tolebi.controllers;
 import com.project.Tolebi.models.User;
 import com.project.Tolebi.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +18,14 @@ public class PageController {
 
     @GetMapping("")
     public String mainPage() {
-        return "index";
+        if(!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) return "index_authorized";
+        else return "index";
     }
 
-    @GetMapping("authorized")
-    public String authorizedMainPage() {
-        return "index_authorized";
-    }
+//    @GetMapping("authorized")
+//    public String authorizedMainPage() {
+//        return "index_authorized";
+//    }
 
 //    @GetMapping("da")
 //    public String da() {
