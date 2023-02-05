@@ -1,6 +1,7 @@
 package com.project.Tolebi.services;
 
-import com.project.Tolebi.PasswordTokenGenerator;
+import com.project.Tolebi.helpers.EMailSender;
+import com.project.Tolebi.helpers.PasswordTokenGenerator;
 import com.project.Tolebi.models.User;
 import com.project.Tolebi.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EMailSender eMailSender;
 
     public User getUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
@@ -41,5 +43,10 @@ public class UserService {
         user.setPassword(password);
         addUser(user);
         return true;
+    }
+
+    public void forgotPassword(String email) {
+        User user = userRepository.findUserByEmail(email);
+        eMailSender.sendMail(email, "Spikizy password Recovery", "Your password recovery link http://localhost:8080/request/" + user.getPasswordToken());
     }
 }

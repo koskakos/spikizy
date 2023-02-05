@@ -142,12 +142,13 @@
                 Pass the verification
             </div>
 
-            <form action="" class="log__form">
-                <input type="text" class="log__user" placeholder=" Email address">
+            <form action="/forgotpassword" method="post" class="log__form">
+                <input type="text" class="log__user" placeholder=" Email address" name="email">
                 <div class="verify">
                     <input type="checkbox">
                     <span>I’m not a robot</span>
                 </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input type="submit" class="log__button" value="Submit">
             </form>
 

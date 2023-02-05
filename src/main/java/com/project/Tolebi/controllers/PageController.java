@@ -1,25 +1,32 @@
 package com.project.Tolebi.controllers;
 
-import com.project.Tolebi.models.User;
-import com.project.Tolebi.services.UserService;
+import com.project.Tolebi.helpers.EMailSender;
+//import com.project.Tolebi.helpers.MailSender;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequiredArgsConstructor
 public class PageController {
 
 //    private final UserService userService;
 
     @GetMapping("")
     public String mainPage() {
+//        mailSender.sendSimpleMail("fafsdfas93@mail.ru", "fadgda", "fadfadgad");
         if(!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) return "index_authorized";
         else return "index";
     }
+
+//    @GetMapping("da")
+//    public String da() {
+//        System.out.println(mailSender.sendSimpleMail("fafsdfas93@mail.ru", "fadgad", "adfagad"));
+//        return "redirect:/";
+//    }
 
 //    @GetMapping("authorized")
 //    public String authorizedMainPage() {

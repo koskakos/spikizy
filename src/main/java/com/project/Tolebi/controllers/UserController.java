@@ -30,6 +30,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @PostMapping("forgotpassword")
+    public String forgotPassword(@RequestParam("email") String email) {
+        userService.forgotPassword(email);
+        return "redirect:/";
+    }
+
     @PostMapping("request/{token}")
     public String postChangePassword(@PathVariable String token, @RequestParam("Password") String password) {
 //        System.out.println(token + " " + password);

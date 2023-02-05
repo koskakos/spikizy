@@ -1,4 +1,4 @@
-package com.project.Tolebi;
+package com.project.Tolebi.helpers;
 
 public class PasswordTokenGenerator {
     public static String generate() {
