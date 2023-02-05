@@ -47,6 +47,8 @@ public class UserService {
 
     public void forgotPassword(String email) {
         User user = userRepository.findUserByEmail(email);
-        eMailSender.sendMail(email, "Spikizy password Recovery", "Your password recovery link http://localhost:8080/request/" + user.getPasswordToken());
+        if(user != null){
+            eMailSender.sendMail(email, "Spikizy password Recovery", "Your password recovery link http://localhost:8080/request/" + user.getPasswordToken());
+        }
     }
 }
