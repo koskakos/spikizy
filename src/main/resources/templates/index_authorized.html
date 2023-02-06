@@ -56,9 +56,15 @@
                         <i class="fa-solid fa-address-card"></i> About</a>
                     <a class="hamburgerlink" href="#">
                         <i class="fa-solid fa-gear"></i> Settings</a>
-                    <form class="hamburgerlink" method="post" action="/logout">
+<!--                    <form class="hamburgerlink" method="post" action="/logout">-->
+<!--                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+<!--                        <button><i class="fa-solid fa-right-from-bracket"> Log Out</i></button>-->
+<!--                    </form>-->
+                    <form class="logout-form" method="post" action="/logout">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                        <button><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+                        <button class="hamburgerlink">
+                            <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                        </button>
                     </form>
                 </div>
             </div>

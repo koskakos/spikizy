@@ -64,3 +64,14 @@ function closeMenu() {
         siteMenu.setAttribute('data-state', "closed");
     }, { once: true })
 }
+
+function confirmPassword() {
+    if (document.getElementById('password').value ==
+        document.getElementById('confirm_password').value) {
+        document.getElementById("error").innerHTML = "Пароли не совпадают";
+        document.getElementById('submit').disabled = false;
+    } else {
+        document.getElementById("error").innerHTML = "";
+        document.getElementById('submit').disabled = true;
+    }
+}

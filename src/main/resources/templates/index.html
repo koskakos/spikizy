@@ -116,10 +116,11 @@
                 <input type="text" placeholder=" Surname" name="surname">
                 <input type="text" placeholder=" Phone">
                 <input type="text" placeholder=" Email" name="email">
-                <input type="text" placeholder=" Password" name="password">
-                <input type="text" placeholder=" Password again">
+                <input type="text" placeholder=" Password" name="password" id="password">
+                <input type="text" placeholder=" Password again" id="confirm_password" onchange="confirmPassword()">
+<!--                <div id="error" style="color: red;"></div>-->
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                <input type="submit" class="log__button" value="Sign up">
+                <input type="submit" class="log__button" value="Sign up" id="submit">
             </form>
 
             <div class="log__register">Already have an account? <button onclick="logPop()">Login</button></div>
