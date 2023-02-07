@@ -19,12 +19,17 @@ profileButtons[1].addEventListener('click', () => {
     profileBlocks[1].setAttribute('data-state', "opened")
 })
 
+profileButtons[2].addEventListener('click', () => {
+    profileBlocks[2].setAttribute('data-state', "opened")
+})
+
 const fileName = document.querySelector(".file-name");
 const defaultBtn = document.querySelector(".defaultBtn");
-const downBtn = document.querySelector(".download");
+const upBtn = document.querySelector(".upload");
 const ava = document.querySelector('.ava-image');
 let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
-downBtn.addEventListener('click', () => {
+upBtn.addEventListener('click', (event) => {
+    event.preventDefault();
     defaultBtn.click();
 })
 
@@ -44,3 +49,23 @@ defaultBtn.addEventListener('change', function () {
     }
 });
 
+var el = document.getElementById('Change');
+
+function isfilled() {
+    if (el.repass.value != "") passCheck();
+}
+
+function passCheck() {
+    var old = el.old.value;
+    var newp = el.new.value;
+    var repass = el.repass.value;
+    var submit = el.submit;
+    submit.disabled = true;
+    var fail = "";
+
+    if (newp != repass) fail = "Passwords must be same";
+    document.getElementById("error").innerHTML = fail;
+    if (fail == "") {
+        submit.disabled = false;
+    }
+}
