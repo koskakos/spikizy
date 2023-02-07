@@ -1,5 +1,6 @@
 package com.project.Tolebi.controllers;
 
+import com.project.Tolebi.helpers.CloudinaryDB;
 import com.project.Tolebi.helpers.EMailSender;
 //import com.project.Tolebi.helpers.MailSender;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,12 @@ public class PageController {
 //        mailSender.sendSimpleMail("fafsdfas93@mail.ru", "fadgda", "fadfadgad");
         if(!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) return "index_authorized";
         else return "index";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        CloudinaryDB d = new CloudinaryDB();
+        return "profile";
     }
 
 //    @GetMapping("da")

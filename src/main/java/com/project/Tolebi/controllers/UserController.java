@@ -17,13 +17,15 @@ public class UserController {
 
     @PostMapping("register")
     public String createUser(@RequestParam("name") String name, @RequestParam("surname") String surname,
-                             @RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+                             @RequestParam("email") String email, @RequestParam("password") String password,
+                             @RequestParam("phone") String phone, Model model) {
         User user = new User();
 
         user.setName(name);
         user.setSurname(surname);
         user.setPassword(password);
         user.setEmail(email);
+        user.setPhone(phone);
         userService.addUser(user);
 
         model.addAttribute("user", user);
