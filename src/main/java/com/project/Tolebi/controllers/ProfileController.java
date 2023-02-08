@@ -20,23 +20,26 @@ public class ProfileController {
 
     @GetMapping("")
     public String redirect() {
-        if(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) return "redirect:/";
+        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
+            return "redirect:/";
         else {
             return "redirect:/profile/" + userService.getAuthenticatedId();
         }
     }
 
     @GetMapping("/{id}")
-    public String profile(@PathVariable Long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+    public String profile(@PathVariable Long id) {
+        if(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) return "redirect:/";
+        if(id != userService.getAuthenticatedId()) return "redirect:/profile";
         return "profile";
     }
 
-//    @PostMapping("/uploadimg")
-//    public String uploadImage(@RequestParam("img") MultipartFile file, @RequestParam("user") Long id) {
-//        String url = userService.uploadImage(file);
-//        userService.addUrlImageToUser(url, userService.getUserById(id));
-//        return "redirect:/profile/" + id;
-//    }
+    @PostMapping("/uploadimg")
+    public String uploadImage(@RequestParam("img") MultipartFile file) {
+        Long id = userService.getAuthenticatedId();
+        String url = userService.uploadImage(file);
+        userService.addUrlImageToUser(url, userService.getUserById(id));
+        return "redirect:/profile/" + id;
+    }
 
 }

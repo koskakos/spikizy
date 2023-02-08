@@ -23,12 +23,6 @@ public class PageController {
         else return "index";
     }
 
-    @GetMapping("/profile")
-    public String profile() {
-        CloudinaryDB d = new CloudinaryDB();
-        return "profile";
-    }
-
 //    @GetMapping("da")
 //    public String da() {
 //        System.out.println(mailSender.sendSimpleMail("fafsdfas93@mail.ru", "fadgad", "adfagad"));
