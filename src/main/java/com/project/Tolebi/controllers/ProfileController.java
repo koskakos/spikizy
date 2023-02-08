@@ -38,6 +38,7 @@ public class ProfileController {
     public String uploadImage(@RequestParam("img") MultipartFile file) {
         Long id = userService.getAuthenticatedId();
         String url = userService.uploadImage(file);
+        userService.destroyUserAvatar(id);
         userService.addUrlImageToUser(url, userService.getUserById(id));
         return "redirect:/profile/" + id;
     }

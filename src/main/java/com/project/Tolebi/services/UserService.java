@@ -30,6 +30,9 @@ public class UserService {
     public User getUserByPasswordToken(String token) {
         return userRepository.findUserByPasswordToken(token);
     }
+    public User getUserByAvatarUrl(String url) {
+        return userRepository.findUserByAvatarUrl(url);
+    }
 
     public boolean addUser(User user) {
         if(userRepository.findUserByEmail(user.getEmail()) != null) return false;
@@ -58,9 +61,18 @@ public class UserService {
             eMailSender.sendMail(email, "Spikizy password Recovery", "Your password recovery link http://localhost:8080/request/" + user.getPasswordToken());
         }
     }
-
+    public void destroyUserAvatar(Long id) {
+        String url = getUserById(id).getAvatarUrl();
+        String publicId = url.substring(url.length() - 40, url.length());
+        if(publicId != "") CloudinaryDB.destroy(publicId);
+    }
     public String uploadImage(MultipartFile file) {
         String t = PasswordTokenGenerator.generate();
+        String url = "http://res.cloudinary.com/dxuquaaez/image/upload/" + t;
+        while(getUserByAvatarUrl(url) != null) {
+            t = PasswordTokenGenerator.generate();
+            url = "http://res.cloudinary.com/dxuquaaez/image/upload/" + t;
+        }
         return CloudinaryDB.upload(file, t);
     }
 
