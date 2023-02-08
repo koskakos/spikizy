@@ -1,12 +1,15 @@
 package com.project.Tolebi.services;
 
+import com.project.Tolebi.helpers.CloudinaryDB;
 import com.project.Tolebi.helpers.EMailSender;
 import com.project.Tolebi.helpers.PasswordTokenGenerator;
 import com.project.Tolebi.models.User;
 import com.project.Tolebi.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +21,10 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findUserById(id);
     }
 
     public User getUserByPasswordToken(String token) {
@@ -50,5 +57,21 @@ public class UserService {
         if(user != null){
             eMailSender.sendMail(email, "Spikizy password Recovery", "Your password recovery link http://localhost:8080/request/" + user.getPasswordToken());
         }
+    }
+
+    public String uploadImage(MultipartFile file) {
+        String t = PasswordTokenGenerator.generate();
+        return CloudinaryDB.upload(file, t);
+    }
+
+    public void addUrlImageToUser(String url, User user) {
+        user.setAvatarUrl(url);
+        userRepository.save(user);
+    }
+
+    public Long getAuthenticatedId() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Long id = getUserByEmail(username).getId();
+        return id;
     }
 }

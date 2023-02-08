@@ -41,25 +41,6 @@ public class CloudinaryDB {
         config.put("api_secret", "ZULhkjFN0yJDoCbXOsWA9GledEg");
         Cloudinary cloudinary = new Cloudinary(config);
         StringBuilder sb = new StringBuilder();
-//        try{
-//            String contentType = Files.probeContentType(file);
-//
-//            // read data as byte[]
-//            byte[] data = Files.readAllBytes(file.toPath());
-//
-//            // convert byte[] to base64(java7)
-//            String base64str = DatatypeConverter.printBase64Binary(data);
-//
-//            sb.append("data:");
-//            sb.append(contentType);
-//            sb.append(";base64,");
-//            sb.append(base64str);
-//
-//            System.out.println(sb.toString());
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
         // Upload
         try {
 //            cloudinary.uploader().upload()
