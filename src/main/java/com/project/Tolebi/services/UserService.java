@@ -64,8 +64,9 @@ public class UserService {
     }
     public void destroyUserAvatar(Long id) {
         String url = getUserById(id).getAvatarUrl();
+        if(url == null) return;
         String publicId = url.substring(url.length() - 40, url.length());
-        if(publicId != "") CloudinaryDB.destroy(publicId);
+        CloudinaryDB.destroy(publicId);
     }
     public String uploadImage(MultipartFile file) {
         String t = PasswordTokenGenerator.generate();
