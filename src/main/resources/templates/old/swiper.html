@@ -4,471 +4,26 @@
 
     <title>Spikizy</title>
 
-    <link rel="stylesheet" href="../css/base2.css">
-    <link rel="stylesheet" href="../css/main2.css">
+    <link rel="stylesheet" href="css/base2.css">
+    <link rel="stylesheet" href="css/swiper.css">
 
     <!-- favicon
         ================================================== -->
     <link rel="shortcut icon" href="favicon.jpg">
+    <link href='https://fonts.googleapis.com/css?family=Public Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Outfit' rel='stylesheet'>
 
     <script src="https://kit.fontawesome.com/69c62f68f1.js" crossorigin="anonymous"></script>
-    <script src="../js/main.js" defer></script>
+    <script src="js/script.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+
 
 </head>
 
 <body>
-
-    <!-- header
-    ================================================== -->
-    <header>
-
-
-        <nav>
-
-            <div class="logo">
-                <div class="logo__circle">
-                    SZ
-                </div>
-                <span class="logo__text">Spikizy</span>
-            </div>
-
-            <ul id="nav" class="nav">
-                <li><a class="navlink" href="#hero">Home</a></li>
-                <li><a class="navlink" href="#courses">Courses</a></li>
-                <li><a class="navlink" href="#category">Category</a></li>
-                <li><a class="navlink" href="">About Us</a></li>
-
-            </ul>
-            <div id="menuToggle">
-
-                <button class="menu-toggle" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <div class="menu" data-state="closed">
-                    <a class="hamburgerlink" href="profile">
-                        <i class="fa-solid fa-user"></i> Profile</a>
-                    <a class="hamburgerlink" href="#">
-                        <i class="fa-solid fa-address-card"></i> About</a>
-                    <a class="hamburgerlink" href="#">
-                        <i class="fa-solid fa-gear"></i> Settings</a>
-                    <form class="logout-form" method="post" action="/logout">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                        <button class="hamburgerlink">
-                            <i class="fa-solid fa-right-from-bracket"></i> Log Out
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-        </nav>
-    </header>
-
-    <!--<div class="lights">
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-    <div class="lights">
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="lightcircle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>-->
-
-
-    <!-- homepage hero
-    ================================================== -->
-    <section id="hero">
-
-        <div class="heroscreen">
-
-            <form id="searchform">
-                <input type="text" id="search" placeholder="What do want to learn?">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-
-            <div>
-                <h3>Learn a New Skill<br>
-                    Everyday, Anytime,<br>
-                    and Anywhere.
-                </h3>
-                <p><b>1000+</b> Courses covering all tech domains for you to<br>
-                    learn and explore new opportunities. Learn from<br>
-                    Industry Experts and land your Dream Job.</p>
-            </div>
-
-            <div class="container">
-                <div id="column">
-                    <h4 id="yellow">1000+</h4>
-                    <h6>Courses to<br>
-                        choose from</h6>
-                </div>
-
-                <div id="column">
-                    <h4 id="green">5000+</h4>
-                    <h6>Students <br>
-                        Trained</h6>
-                </div>
-
-                <div id="column">
-                    <h4 id="orange">200+</h4>
-                    <h6>Professional<br>
-                        Trainers</h6>
-                </div>
-
-            </div>
-
-        </div> <!-- end container -->
-
-        </div> <!-- end row -->
-
-    </section>
-
-    <!-- Statistic
-    ================================================== -->
-    <section id="Statistic">
-
-        <div class="row">
-
-            <div class="stat">
-
-                <div class="container">
-                    <div id="instructor" class="icons"><img id="icons" src="Elements/GraduationCap.png"></div>
-                    <div>
-                        <h4>300</h4>
-                        <p>Instructor</p>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div id="student" class="icons"><img id="icons" src="Elements/Users.png"></div>
-                    <div>
-                        <h4>20,000+</h4>
-                        <p>Student</p>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div id="video" class="icons"><img id="icons" src="Elements/VideoCamera.png"></div>
-                    <div>
-                        <h4>10,000+</h4>
-                        <p>Video</p>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div id="users" class="icons"><img id="icons" src="Elements/UsersThree.png"></div>
-                    <div class="column">
-                        <div id="statGet">
-                            <h4>999,999+</h4>
-                            <p>Users</p>
-                        </div>
-
-                    </div> <!-- end container -->
-
-                </div> <!-- end row -->
-
-    </section>
 
     <!-- courses
     ================================================== -->
@@ -481,29 +36,14 @@
                 <p>Various versions have evolved over the years, sometimes by accident,</p>
             </div>
         </div> <!-- end row -->
-        <div class="feedgrid">
+        <div class="row">
 
-            <button class="leftbutton"><i class="fa-solid fa-chevron-left"></i></button>
-            <div class="slider">
-                <div class="slider-line">
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/image 8.png"></div>
-                        <p>Various versions have evolve...</p>
-                        <div class="container">
-                            <p><i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                (102)
-                            </p>
-                        </div>
-                        <hr>
-                        <h6>500$</h6>
-                    </a>
+            <div class="slider swiper-contaier">
 
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/image 9.png"></div>
+                <div class="slider-line swiper-wrapper">
+
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/image 8.png"></div>
                         <p>Various versions have evolve...</p>
                         <div class="container">
                             <p><i class="fa-solid fa-star"></i>
@@ -518,8 +58,8 @@
                         <h6>500$</h6>
                     </a>
 
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/image 7.png"></div>
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/image 9.png"></div>
                         <p>Various versions have evolve...</p>
                         <div class="container">
                             <p><i class="fa-solid fa-star"></i>
@@ -534,23 +74,8 @@
                         <h6>500$</h6>
                     </a>
 
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/Mask group.png"></div>
-                        <p>Various versions have evolve...</p>
-                        <div class="container">
-                            <p><i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                (102)
-                            </p>
-                        </div>
-                        <hr>
-                        <h6>500$</h6>
-                    </a>
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/image 8.png"></div>
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/image 7.png"></div>
                         <p>Various versions have evolve...</p>
                         <div class="container">
                             <p><i class="fa-solid fa-star"></i>
@@ -565,8 +90,8 @@
                         <h6>500$</h6>
                     </a>
 
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/image 9.png"></div>
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/200.jpg"></div>
                         <p>Various versions have evolve...</p>
                         <div class="container">
                             <p><i class="fa-solid fa-star"></i>
@@ -581,8 +106,8 @@
                         <h6>500$</h6>
                     </a>
 
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/image 7.png"></div>
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/image 8.png"></div>
                         <p>Various versions have evolve...</p>
                         <div class="container">
                             <p><i class="fa-solid fa-star"></i>
@@ -597,8 +122,8 @@
                         <h6>500$</h6>
                     </a>
 
-                    <a class="pack" href="coursepage1.html">
-                        <div id="courseimage"><img src="Elements/Mask group.png"></div>
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/image 9.png"></div>
                         <p>Various versions have evolve...</p>
                         <div class="container">
                             <p><i class="fa-solid fa-star"></i>
@@ -612,19 +137,49 @@
                         <hr>
                         <h6>500$</h6>
                     </a>
+
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/image 7.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
+                    <a class="pack swiper-slide" href="coursepage1.html">
+                        <div class="courseimage"><img src="Elements/200.jpg"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
                 </div>
 
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <div class="swiper-pagination"></div>
             </div>
 
-            <button class="rightbutton"><i class="fa-solid fa-chevron-right"></i></button>
         </div> <!-- end container -->
-        <div class="pagination">
-            <button class="page active"></button>
-            <button class="page"></button>
-            <button class="page"></button>
-            <button class="page"></button>
-        </div>
-
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     </section>
 
     <!-- category

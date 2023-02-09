@@ -73,7 +73,7 @@ ul {
 /* =================================================================== */
 
 #hero {
-	background: url(../Elements/FirstBackLandindg_page-0001.jpg) no-repeat;
+	background: url(../../Elements/old/FirstBackLandindg_page-0001.jpg) no-repeat;
 	background-size: cover;
 	height: 45vw;
 	width: 100%;
@@ -299,6 +299,10 @@ ul#nav li {
 	display: flex;
 }
 
+.hamburgerlink i {
+	margin-right: 15px;
+}
+
 .hamburgerlink:hover {
 	color: #fff;
 	background-color: #00000040;
@@ -406,36 +410,14 @@ nav .container {
 	flex-direction: column;
 }
 
-.pass-box {
-	position: relative;
-}
-
-.pass-box i {
-	position: absolute;
-	right: 15px;
-	top: 27px;
-}
-
-.see:hover {
-	color: black;
-}
-
-.see {
-	cursor: pointer;
-	color: gray;
-}
-
-.log__form input[type="password"],
-.log__form input[type="email"],
 .log__form input[type="text"] {
-	width: 430px;
+	width: 100%;
 	height: 50px;
 	font-family: 'Outfit';
 	font-size: 22px;
 	border-radius: 5px;
 	margin-top: 10px;
 	border: 1px solid gray;
-	padding: 0 0px 0 15px;
 }
 
 .log__forgot {

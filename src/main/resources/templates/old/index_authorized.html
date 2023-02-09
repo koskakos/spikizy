@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 
-<head>
+<head xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <title>Spikizy</title>
-
+<!--    <div sec:authorize="isAuthenticated()">-->
+<!--        This content is only shown to authenticated users.123-->
+<!--    </div>-->
     <link rel="stylesheet" href="../css/base2.css">
     <link rel="stylesheet" href="../css/main2.css">
 
@@ -48,7 +50,7 @@
                 </button>
 
                 <div class="menu" data-state="closed">
-                    <a class="hamburgerlink" href="profile">
+                    <a class="hamburgerlink" href="profile/">
                         <i class="fa-solid fa-user"></i> Profile</a>
                     <a class="hamburgerlink" href="#">
                         <i class="fa-solid fa-address-card"></i> About</a>

@@ -1,14 +1,11 @@
 package com.project.Tolebi.controllers;
 
-import com.project.Tolebi.helpers.CloudinaryDB;
-import com.project.Tolebi.helpers.PasswordTokenGenerator;
-import com.project.Tolebi.models.User;
 import com.project.Tolebi.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,7 +31,7 @@ public class ProfileController {
         return "profile";
     }
 
-    @PostMapping("/uploadimg")
+    @PostMapping(path ="/uploadimg", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadImage(@RequestParam("img") MultipartFile file) {
         Long id = userService.getAuthenticatedId();
         String url = userService.uploadImage(file);

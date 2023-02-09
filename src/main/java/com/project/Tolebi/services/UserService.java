@@ -35,7 +35,8 @@ public class UserService {
     }
 
     public boolean addUser(User user) {
-        if(userRepository.findUserByEmail(user.getEmail()) != null) return false;
+        // Надо сделать проверку на уникальность
+//        if(userRepository.findUserByEmail(user.getEmail()) != null) return false;
         user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         String passwordToken = PasswordTokenGenerator.generate();
@@ -49,7 +50,7 @@ public class UserService {
     public boolean changePassword(String token, String password) {
         User user = userRepository.findUserByPasswordToken(token);
         if(user == null) return false;
-        userRepository.deleteById(user.getId());
+//        userRepository.deleteById(user.getId());
         user.setPassword(password);
         addUser(user);
         return true;

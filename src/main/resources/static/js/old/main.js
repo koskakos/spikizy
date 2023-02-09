@@ -42,46 +42,6 @@ for (var i = 0; i < pagination.length; i++) {
     }
 }
 
-var el = document.getElementById('Register');
-
-function isfilled() {
-    if (el.repass.value != "") passCheck();
-}
-
-function passCheck() {
-    var name = el.name.value;
-    var password = el.password.value;
-    var repass = el.repass.value;
-    var submit = el.submit;
-    submit.disabled = true;
-    var fail = "";
-
-    if (password != repass) fail = "Passwords must be same";
-    document.getElementById("error").innerHTML = fail;
-    if (fail == "") {
-        submit.disabled = false;
-    }
-}
-
-const passboxes = [...document.querySelectorAll(".pass-box")];
-const eyes = [...document.querySelectorAll(".see")];
-const passes = [...document.querySelectorAll(".Pass")];
-const isVisibles = [0, 0, 0];
-
-passboxes.forEach((item, i) => {
-    eyes[i].addEventListener('click', () => {
-        if (isVisibles[i]) {
-            passes[i].type = 'password';
-            isVisibles[i] = 0;
-            eyes[i].classList.replace('fa-eye', 'fa-eye-slash');
-        } else {
-            passes[i].type = 'text';
-            isVisibles[i] = 1;
-            eyes[i].classList.replace('fa-eye-slash', 'fa-eye');
-        }
-    })
-})
-
 // hamburger
 const menuToggle = document.querySelector('.menu-toggle');
 const siteMenu = document.querySelector('.menu');

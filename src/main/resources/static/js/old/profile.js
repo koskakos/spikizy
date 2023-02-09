@@ -35,22 +35,17 @@ upBtn.addEventListener('click', (event) => {
 
 defaultBtn.addEventListener('change', function () {
     const file = this.files[0];
-    document.getElementById("size-error").innerHTML = "";
-    if (file.size < 2 * 1024 * 1024) {
+    if (file) {
         const reader = new FileReader();
         reader.onload = function () {
             const result = reader.result;
             ava.src = result;
         }
         reader.readAsDataURL(file);
-    } else {
-        document.getElementById("size-error").innerHTML = "File Size Exceeds 2mb";
     }
-    if (this.value.match(/(\.jpg|\.png|\.JPG|\.PNG|\.jpeg|\.JPEG)$/)) {
+    if (this.value) {
         let valueStore = this.value.match(regExp);
         fileName.value = valueStore;
-    } else {
-        document.getElementById("size-error").innerHTML = "Invalid File Type";
     }
 });
 
@@ -61,6 +56,7 @@ function isfilled() {
 }
 
 function passCheck() {
+    var old = el.old.value;
     var newp = el.new.value;
     var repass = el.repass.value;
     var submit = el.submit;
@@ -73,22 +69,3 @@ function passCheck() {
         submit.disabled = false;
     }
 }
-
-const passboxes = [...document.querySelectorAll(".pass-box")];
-const eyes = [...document.querySelectorAll(".see")];
-const passes = [...document.querySelectorAll(".Pass")];
-const isVisibles = [0, 0, 0];
-
-passboxes.forEach((item, i) => {
-    eyes[i].addEventListener('click', () => {
-        if (isVisibles[i]) {
-            passes[i].type = 'password';
-            isVisibles[i] = 0;
-            eyes[i].classList.replace('fa-eye', 'fa-eye-slash');
-        } else {
-            passes[i].type = 'text';
-            isVisibles[i] = 1;
-            eyes[i].classList.replace('fa-eye-slash', 'fa-eye');
-        }
-    })
-})
