@@ -33,7 +33,11 @@ public class UserService {
     public User getUserByAvatarUrl(String url) {
         return userRepository.findUserByAvatarUrl(url);
     }
-
+    public boolean checkPassword(Long id, String password) {
+        User user = getUserById(id);
+        if(user == null) return false;
+        return passwordEncoder.matches(password, user.getPassword());
+    }
     public boolean addUser(User user) {
         // Надо сделать проверку на уникальность
 //        if(userRepository.findUserByEmail(user.getEmail()) != null) return false;
@@ -84,8 +88,8 @@ public class UserService {
     }
 
     public Long getAuthenticatedId() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Long id = getUserByEmail(username).getId();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long id = user.getId();
         return id;
     }
 }
