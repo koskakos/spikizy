@@ -52,10 +52,16 @@ public class UserService {
     }
 
 
+    public boolean changePassword(User user, String password) {
+        if(user == null) return false;
+        user.setPassword(password);
+        addUser(user);
+        return true;
+    }
+
     public boolean changePassword(String token, String password) {
         User user = userRepository.findUserByPasswordToken(token);
         if(user == null) return false;
-//        userRepository.deleteById(user.getId());
         user.setPassword(password);
         addUser(user);
         return true;

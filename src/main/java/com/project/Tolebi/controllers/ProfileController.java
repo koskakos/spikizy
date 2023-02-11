@@ -1,8 +1,10 @@
 package com.project.Tolebi.controllers;
 
+import com.project.Tolebi.models.User;
 import com.project.Tolebi.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,18 @@ public class ProfileController {
         userService.destroyUserAvatar(id);
         userService.addUrlImageToUser(url, userService.getUserById(id));
         return "redirect:/profile/" + id;
+    }
+
+    @PostMapping("/changepassword")
+    public String changePassword(@RequestParam("repass") String password) {
+        userService.changePassword((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(), password);
+        return "redirect:/profile/";
+    }
+
+    @ResponseBody
+    @PostMapping("/checkpassword")
+    public ResponseEntity checkPassword(@RequestParam("password") String password) {
+        return ResponseEntity.ok(userService.checkPassword(userService.getAuthenticatedId(), password));
     }
 
 }
