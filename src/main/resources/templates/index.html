@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="../css/base2.css">
     <link rel="stylesheet" href="../css/main2.css">
 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" content="${_csrf.token}" />
+
     <!-- favicon
         ================================================== -->
     <link rel="shortcut icon" href="favicon.jpg">
@@ -131,7 +136,8 @@
                 </div>
                 <div id="error" style="color: red;"></div>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                <input type="submit" class="log__button" value="Sign up" name="submit">
+                <input type="submit" name="submit" id="reg-submit" class="log__button" value="Sign up">
+                <button name="default" id="reg-default" hidden></button>
             </form>
 
             <div class="log__register">Already have an account? <button onclick="logPop()">Login</button></div>

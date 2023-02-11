@@ -82,25 +82,35 @@ passboxes.forEach((item, i) => {
     })
 })
 
-// hamburger
-const menuToggle = document.querySelector('.menu-toggle');
-const siteMenu = document.querySelector('.menu');
-
-menuToggle.addEventListener('click', () => {
-    const isOpened = menuToggle.getAttribute('aria-expanded') === "true";
-    if (isOpened ? closeMenu() : openMenu());
-});
-
-function openMenu() {
-    menuToggle.setAttribute('aria-expanded', "true");
-    siteMenu.setAttribute('data-state', "opened");
+const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+const regForm = document.getElementById('Register');
+let isUnique = checkEmail();
+async function checkEmail() {
+    let email = regForm.email.value;
+    // var params = new URLSearchParams('?id=41&password=12345678');
+    let data = '?email=' + email;
+    let response = await fetch('../checkemail' + data, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'X-XSRF-TOKEN': csrfToken,
+            // id: '41',
+            // password: '12345678',
+        },
+        // body: params
+    });
+    isUnique = await response.json();
+    return isUnique;
 }
 
-function closeMenu() {
-    menuToggle.setAttribute('aria-expanded', "false");
-    siteMenu.setAttribute('data-state', "closing");
-
-    siteMenu.addEventListener('animationend', () => {
-        siteMenu.setAttribute('data-state', "closed");
-    }, { once: true })
+document.getElementById('reg-submit').onclick = (event) => {
+    event.preventDefault();
+    isUnique = checkEmail();
+    if (isUnique) {
+        document.getElementById("error").innerHTML = "";
+        regForm.default.click();
+    } else {
+        regForm.email.value = "";
+        document.getElementById("error").innerHTML = "Email already exist";
+    }
 }
