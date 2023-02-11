@@ -19,10 +19,11 @@ public class PageController {
     @GetMapping("")
     public String mainPage() {
 //        mailSender.sendSimpleMail("fafsdfas93@mail.ru", "fadgda", "fadfadgad");
-        if(!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) return "index_authorized";
+        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+            return "index_authorized";
         else return "index";
     }
-
+ 
 //    @GetMapping("/test")
 //    public String test() {
 //
@@ -33,7 +34,6 @@ public class PageController {
     @ResponseBody
     @PostMapping("/gettest")
     public ResponseEntity test123(@RequestParam("password") String password) {
-
         return ResponseEntity.ok(userService.checkPassword(userService.getAuthenticatedId(), password));
     }
 

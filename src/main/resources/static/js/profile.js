@@ -62,11 +62,11 @@ function isfilled() {
 }
 
 function passCheck() {
-    var newp = el.new.value;
-    var repass = el.repass.value;
-    var submit = el.submit;
+    let newp = el.new.value;
+    let repass = el.repass.value;
+    let submit = el.submit;
     submit.disabled = true;
-    var fail = "";
+    let fail = "";
 
     if (newp != repass) fail = "Passwords must be same";
     document.getElementById("error").innerHTML = fail;
@@ -94,7 +94,8 @@ passboxes.forEach((item, i) => {
     })
 })
 
-
+const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+let oldPass = false;
 async function checkOldPassword() {
     let password = document.getElementById('oldpassword').value;
     // var params = new URLSearchParams('?id=41&password=12345678');
@@ -109,20 +110,20 @@ async function checkOldPassword() {
         },
         // body: params
     });
-    let result = await response.json();
-    return result;
+    oldPass = await response.json();
+    return oldPass;
 }
 
 el.submit.onclick = (event) => {
     event.preventDefault();
-
-    if (checkOldPassword()) {
+    if (oldPass) {
         document.getElementById("error").innerHTML = "";
         el.default.click();
     } else {
         el.new.value = "";
         el.repass.value = "";
         el.old.value = "";
-        document.getElementById("error").innerHTML = "Invalid Current Password"
+        document.getElementById("error").innerHTML = "Invalid Current Password";
+
     }
 }

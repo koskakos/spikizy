@@ -38,6 +38,7 @@ public class UserService {
         if(user == null) return false;
         return passwordEncoder.matches(password, user.getPassword());
     }
+
     public boolean addUser(User user) {
         // Надо сделать проверку на уникальность
 //        if(userRepository.findUserByEmail(user.getEmail()) != null) return false;
