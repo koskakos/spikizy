@@ -253,8 +253,8 @@ ul#nav li {
 	transform-origin: 0.222222vw 0px;
 
 	transition: transform 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-		background 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-		opacity 0.35s ease;
+	background 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+	opacity 0.35s ease;
 }
 
 .menu-toggle {
@@ -281,21 +281,26 @@ ul#nav li {
 .menu {
 	position: absolute;
 	top: 3.5vw;
+	width: 12vw;
 	text-align: start;
 	display: flex;
 	flex-direction: column;
 	background: #373749;
 }
 
+.hamburgerlink i {
+	margin: 0 7px 0 0;
+}
+
 .hamburgerlink {
 	color: rgb(200, 200, 200);
 	padding: 1vw;
-	width: 10vw;
+	width: 100%;
 	text-transform: uppercase;
+	background: none;
+	border: none;
 	border-bottom: 0.1vw solid #666666;
-	display: grid;
-	grid-template-columns: 0.1fr 0.9fr;
-	gap: 1vw;
+	display: flex;
 }
 
 .hamburgerlink:hover {
@@ -405,14 +410,36 @@ nav .container {
 	flex-direction: column;
 }
 
+.pass-box {
+	position: relative;
+}
+
+.pass-box i {
+	position: absolute;
+	right: 15px;
+	top: 27px;
+}
+
+.see:hover {
+	color: black;
+}
+
+.see {
+	cursor: pointer;
+	color: gray;
+}
+
+.log__form input[type="password"],
+.log__form input[type="email"],
 .log__form input[type="text"] {
-	width: 100%;
+	width: 430px;
 	height: 50px;
 	font-family: 'Outfit';
 	font-size: 22px;
 	border-radius: 5px;
 	margin-top: 10px;
 	border: 1px solid gray;
+	padding: 0 0px 0 15px;
 }
 
 .log__forgot {

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<head xmlns:sec="http://www.w3.org/1999/xhtml">
+
+    <title>Spikizy</title>
+    <div sec:authorize="isAuthenticated()">
+        This content is only shown to authenticated users.
+    </div>
+    <link rel="stylesheet" href="css/base2.css">
+    <link rel="stylesheet" href="css/main2.css">
+
+    <!-- favicon
+        ================================================== -->
+    <link rel="shortcut icon" href="favicon.jpg">
+
+    <script src="https://kit.fontawesome.com/69c62f68f1.js" crossorigin="anonymous"></script>
+    <script src="js/pop.js" defer></script>
+    <script src="js/main.js" defer></script>
+
+</head>
+
+<body>
+
+    <!-- header
+    ================================================== -->
+    <header>
+
+
+        <nav id="nav-wrap">
+
+            <div class="logo">
+                <div class="logo__circle">
+                    SZ
+                </div>
+                <span class="logo__text">Spikizy</span>
+            </div>
+
+            <ul id="nav" class="nav">
+                <li><a class="navlink" href="#hero" key="home">Home</a></li>
+                <li><a class="navlink" href="#courses" key="courses">Courses</a></li>
+                <li><a class="navlink" href="#category" key="category">Category</a></li>
+                <li><a class="navlink" href="" key="about">About Us</a></li>
+            </ul>
+
+            <div class="container">
+                <button class="login" onclick="logPop()"><i class="fa-solid fa-lock"></i>
+                    Login</button>
+                <button class="signup" onclick="regPop()">Sign up for Free</button>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="log" aria-expanded="false">
+        <div class="log__wrapper">
+
+            <button class="cross" onclick="closeLog()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="log__title">
+                Lets <span>Sign</span> you in
+            </div>
+
+            <div class="log__greetings">
+                Welcome Back,</br>
+                You have been missed
+            </div>
+
+            <form action="/static" class="log__form" method="post">
+                <input type="text" class="log__user" placeholder=" Email, phone & username" name="username">
+                <input type="text" class="log__pass" placeholder=" Password" name="password">
+                <div class="log__forgot" onclick="forgotPop()">
+                    Forgot Password?
+                </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="submit" class="log__button" value="Sign in">
+            </form>
+
+            <div class="log__or">
+                <hr>
+                <span>or</span>
+                <hr>
+            </div>
+
+            <div class="log__socials">
+                <i class="fa-brands fa-google"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-apple"></i>
+            </div>
+
+            <div class="log__register">
+                Don’t have an account?
+                <button onclick="regPop()">Register Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="reg" aria-expanded="false">
+        <div class="reg__wrapper">
+
+            <button class="cross" onclick="closeReg()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="log__title">
+                Lets <span>Register</span> Account
+            </div>
+
+            <div class="reg__greetings">
+                Hello user, you have <br>
+                a greatful journey
+            </div>
+
+            <form action="/register" class="log__form" method="post">
+                <input type="text" placeholder=" Name" name="name">
+                <input type="text" placeholder=" Surname" name="surname">
+                <input type="text" placeholder=" Phone" name="phone">
+                <input type="text" placeholder=" Email" name="email">
+                <input type="text" placeholder=" Password" name="password" id="password">
+                <input type="text" placeholder=" Password again" id="confirm_password" onchange="confirmPassword()">
+<!--                <div id="error" style="color: red;"></div>-->
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="submit" class="log__button" value="Sign up" id="submit">
+            </form>
+
+            <div class="log__register">Already have an account? <button onclick="logPop()">Login</button></div>
+
+        </div>
+    </div>
+
+    <div class="forgot" aria-expanded="false">
+        <div class="forgot__wrapper">
+
+            <button class="cross" onclick="closeForgot()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="log__title">
+                <span>Restore</span> your<br> password.
+            </div>
+
+            <div class="log__greetings">
+                Pass the verification
+            </div>
+
+            <form action="/forgotpassword" method="post" class="log__form">
+                <input type="text" class="log__user" placeholder=" Email address" name="email">
+                <div class="verify">
+                    <input type="checkbox">
+                    <span>I’m not a robot</span>
+                </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="submit" class="log__button" value="Submit">
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- homepage hero
+    ================================================== -->
+    <section id="hero">
+
+        <div class="heroscreen">
+
+            <form id="searchform">
+                <input type="text" id="search" placeholder="What do want to learn?">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+
+            <div>
+                <h3>Learn a New Skill<br>
+                    Everyday, Anytime,<br>
+                    and Anywhere.
+                </h3>
+                <p><b>1000+</b> Courses covering all tech domains for you to<br>
+                    learn and explore new opportunities. Learn from<br>
+                    Industry Experts and land your Dream Job.</p>
+            </div>
+
+            <div class="container">
+                <div id="column">
+                    <h4 id="yellow">1000+</h4>
+                    <h6>Courses to<br>
+                        choose from</h6>
+                </div>
+
+                <div id="column">
+                    <h4 id="green">5000+</h4>
+                    <h6>Students <br>
+                        Trained</h6>
+                </div>
+
+                <div id="column">
+                    <h4 id="orange">200+</h4>
+                    <h6>Professional<br>
+                        Trainers</h6>
+                </div>
+
+            </div>
+
+        </div> <!-- end container -->
+
+        </div> <!-- end row -->
+
+    </section>
+
+    <!-- Statistic
+    ================================================== -->
+    <section id="Statistic">
+
+        <div class="row">
+
+            <div class="stat">
+
+                <div class="container">
+                    <div id="instructor" class="icons"><img id="icons" src="Elements/GraduationCap.png"></div>
+                    <div>
+                        <h4>300</h4>
+                        <p>Instructor</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div id="student" class="icons"><img id="icons" src="Elements/Users.png"></div>
+                    <div>
+                        <h4>20,000+</h4>
+                        <p>Student</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div id="video" class="icons"><img id="icons" src="Elements/VideoCamera.png"></div>
+                    <div>
+                        <h4>10,000+</h4>
+                        <p>Video</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div id="users" class="icons"><img id="icons" src="Elements/UsersThree.png"></div>
+                    <div class="column">
+                        <div id="statGet">
+                            <h4>999,999+</h4>
+                            <p>Users</p>
+                        </div>
+
+                    </div> <!-- end container -->
+
+                </div> <!-- end row -->
+
+    </section>
+
+    <!-- courses
+    ================================================== -->
+    <section id="courses">
+
+        <div class="row">
+
+            <div>
+                <h5>Most <span>Popular Course</span></h5>
+                <p>Various versions have evolved over the years, sometimes by accident,</p>
+            </div>
+        </div> <!-- end row -->
+        <div class="feedgrid">
+
+            <button class="leftbutton"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="slider">
+                <div class="slider-line">
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/image 8.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/image 9.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/image 7.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/Mask group.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/image 8.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/image 9.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/image 7.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+
+                    <a class="pack" href="coursepage1.html">
+                        <div id="courseimage"><img src="Elements/Mask group.png"></div>
+                        <p>Various versions have evolve...</p>
+                        <div class="container">
+                            <p><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                (102)
+                            </p>
+                        </div>
+                        <hr>
+                        <h6>500$</h6>
+                    </a>
+                </div>
+
+            </div>
+
+            <button class="rightbutton"><i class="fa-solid fa-chevron-right"></i></button>
+        </div> <!-- end container -->
+        <div class="pagination">
+            <button class="page active"></button>
+            <button class="page"></button>
+            <button class="page"></button>
+            <button class="page"></button>
+        </div>
+
+    </section>
+
+    <!-- category
+    ================================================== -->
+    <section id="category">
+
+        <div class="row">
+
+            <div>
+                <h5>Most <span>Popular Category</span></h5>
+                <p>Various versions have evolved over the years, sometimes by accident,</p>
+            </div>
+            <div class="column">
+
+                <div class="container">
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/PenNib.png">
+                            <div class="column">
+                                <p>Design</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/FileHtml.png">
+                            <div class="column">
+                                <p>Development</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle" href=""><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/MicrophoneStage.png">
+                            <div class="column">
+                                <p>Marketing</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/Briefcase.png">
+                            <div class="column">
+                                <p>Business</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                </div> <!-- end container -->
+
+                <div class="container">
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/SunHorizon.png">
+                            <div class="column">
+                                <p>Lifestyle</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/Camera.png">
+                            <div class="column">
+                                <p>Photography</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/MusicNote.png">
+                            <div class="column">
+                                <p>Music</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/Database.png">
+                            <div class="column">
+                                <p>Data Science</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                </div> <!-- end container -->
+
+                <div class="container">
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/Lightbulb.png">
+                            <div class="column">
+                                <p>Personal Develop</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/Heartbeat.png">
+                            <div class="column">
+                                <p>Health & Fitness</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/Graph.png">
+                            <div class="column">
+                                <p>Finance</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                    <a class="services" href="">
+                        <div class="container"><img src="Elements/Detective.png">
+                            <div class="column">
+                                <p>Teaching</p>
+                                <p class="courseNum">Courses 145</p>
+                            </div>
+                        </div>
+                        <div id="circle"><img class="Arr" src="Elements/ArrowUpRight.png">
+                            <img class="ArrOr" src="Elements/ArrowUpRightOrrange.png">
+                        </div>
+                    </a>
+
+                </div> <!-- end container -->
+
+            </div><!-- end column -->
+
+        </div> <!-- end row -->
+
+    </section>
+
+    <!-- staff
+    ================================================== -->
+    <section id="staff">
+
+        <div class="row">
+
+            <div>
+                <h5>Our best <span>Instructor</span></h5>
+                <p>Various versions have evolved over the years, sometimes by accident,</p>
+            </div>
+        </div> <!-- end row -->
+        <div class="feedgrid">
+            <button class="leftbutton"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="slider">
+                <div class="slider-line">
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 16.png"></div>
+                        <h3>Kakashi Hatake</h3>
+                        <p>UI UX Design Expert</p>
+                    </div>
+
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 17.png"></div>
+                        <h3>Onizuka Eikichi</h3>
+                        <p>Social Media Expert</p>
+                    </div>
+
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 18.png"></div>
+                        <h3>Jeon Jungkook</h3>
+                        <p>Business Idea Expert</p>
+                    </div>
+
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 19.png"></div>
+                        <h3>Kim Taehyung</h3>
+                        <p>Photograpy Expert</p>
+                    </div>
+
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 16.png"></div>
+                        <h3>Kakashi Hatake</h3>
+                        <p>UI UX Design Expert</p>
+                    </div>
+
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 17.png"></div>
+                        <h3>Onizuka Eikichi</h3>
+                        <p>Social Media Expert</p>
+                    </div>
+
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 18.png"></div>
+                        <h3>Jeon Jungkook</h3>
+                        <p>Business Idea Expert</p>
+                    </div>
+
+                    <div class="pack">
+                        <div id="courseimage"><img src="Elements/Rectangle 19.png"></div>
+                        <h3>Kim Taehyung</h3>
+                        <p>Photograpy Expert</p>
+                    </div>
+                </div>
+            </div>
+            <button class="rightbutton"><i class="fa-solid fa-chevron-right"></i></button>
+        </div> <!-- end container -->
+
+        <div class="pagination">
+            <button class="page active"></button>
+            <button class="page"></button>
+            <button class="page"></button>
+            <button class="page"></button>
+        </div>
+
+    </section>
+
+    <!-- feedback
+    ================================================== -->
+    <section id="feedback">
+
+        <div class="row">
+
+            <div>
+                <h5>Students <span>Feedback</span></h5>
+                <p>Various versions have evolved over the years, sometimes by accident,</p>
+            </div>
+        </div> <!-- end row -->
+
+        <div class="feedgrid">
+            <button class="leftbutton"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="slider">
+                <div class="slider-line">
+
+                    <div class="feeds">
+                        <div class="container">
+
+                            <div><img class="ava" src="Elements/Rectangle 23.png"></div>
+                            <div class="feedtext">
+                                <h4>Elon Musk</h4>
+                                <h5>UI UX Designer</h5>
+                            </div>
+                            <div><img id="quote" src="Elements/quote.png"></div>
+                        </div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet
+                            tincidunt eros pharetra. Nam sed imperdiet
+                            turpis. In hac habitasse platea dictumst.
+                            Praesent nulla massa, hendrerit vestibulum
+                            gravida in, feugiat auctor felis.</p>
+                    </div>
+
+                    <div class="feeds">
+                        <div class="container">
+                            <div><img class="ava" src="Elements/Rectangle 24.png"></div>
+                            <div class="feedtext">
+                                <h4>tokayev_online</h4>
+                                <h5>UI UX Designer</h5>
+                            </div>
+                            <div><img id="quote" src="Elements/quote.png"></div>
+                        </div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet
+                            tincidunt eros pharetra. Nam sed imperdiet
+                            turpis. In hac habitasse platea dictumst.
+                            Praesent nulla massa, hendrerit vestibulum
+                            gravida in, feugiat auctor felis.</p>
+                    </div>
+
+                    <div class="feeds">
+                        <div class="container">
+                            <div><img class="ava" src="Elements/Rectangle 25.png"></div>
+                            <div class="feedtext">
+                                <h4 id="oljas">OlzhasKazhybayev</h4>
+                                <h5>UI UX Designer</h5>
+                            </div>
+                            <div><img id="quote" src="Elements/quote.png"></div>
+                        </div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet
+                            tincidunt eros pharetra. Nam sed imperdiet
+                            turpis. In hac habitasse platea dictumst.
+                            Praesent nulla massa, hendrerit vestibulum
+                            gravida in, feugiat auctor felis.</p>
+                    </div>
+
+                    <div class="feeds">
+                        <div class="container">
+
+                            <div><img class="ava" src="Elements/Rectangle 23.png"></div>
+                            <div class="feedtext">
+                                <h4>Elon Musk</h4>
+                                <h5>UI UX Designer</h5>
+                            </div>
+                            <div><img id="quote" src="Elements/quote.png"></div>
+                        </div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet
+                            tincidunt eros pharetra. Nam sed imperdiet
+                            turpis. In hac habitasse platea dictumst.
+                            Praesent nulla massa, hendrerit vestibulum
+                            gravida in, feugiat auctor felis.</p>
+                    </div>
+
+                    <div class="feeds">
+                        <div class="container">
+                            <div><img class="ava" src="Elements/Rectangle 24.png"></div>
+                            <div class="feedtext">
+                                <h4>tokayev_online</h4>
+                                <h5>UI UX Designer</h5>
+                            </div>
+                            <div><img id="quote" src="Elements/quote.png"></div>
+                        </div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet
+                            tincidunt eros pharetra. Nam sed imperdiet
+                            turpis. In hac habitasse platea dictumst.
+                            Praesent nulla massa, hendrerit vestibulum
+                            gravida in, feugiat auctor felis.</p>
+                    </div>
+
+                    <div class="feeds">
+                        <div class="container">
+                            <div><img class="ava" src="Elements/Rectangle 25.png"></div>
+                            <div class="feedtext">
+                                <h4 id="oljas">OlzhasKazhybayev</h4>
+                                <h5>UI UX Designer</h5>
+                            </div>
+                            <div><img id="quote" src="Elements/quote.png"></div>
+                        </div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet
+                            tincidunt eros pharetra. Nam sed imperdiet
+                            turpis. In hac habitasse platea dictumst.
+                            Praesent nulla massa, hendrerit vestibulum
+                            gravida in, feugiat auctor felis.</p>
+                    </div>
+
+                    <div class="feeds">
+                        <div class="container">
+
+                            <div><img class="ava" src="Elements/Rectangle 23.png"></div>
+                            <div class="feedtext">
+                                <h4>ElonMusk</h4>
+                                <h5>UI UX Designer</h5>
+                            </div>
+                            <div><img id="quote" src="Elements/quote.png"></div>
+                        </div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet
+                            tincidunt eros pharetra. Nam sed imperdiet
+                            turpis. In hac habitasse platea dictumst.
+                            Praesent nulla massa, hendrerit vestibulum
+                            gravida in, feugiat auctor felis.</p>
+                    </div>
+                </div>
+
+            </div>
+            <button class="rightbutton"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+    </section>
+    <!-- call
+    ================================================== -->
+
+    <section id="call">
+
+        <div class="row">
+
+            <div class="container">
+
+                <div class="column">
+                    <img id="rocket" src="Elements/Saly-1.png">
+                    <img id="backell" src="Elements/Ellipse 18.png">
+                </div><!-- end column -->
+
+
+                <div class="column">
+                    <div>
+                        <h4>Join <span>World's largest</span> learning
+                            platform today</h4>
+                    </div>
+                    <div>
+                        <h6>Start learning by registering for free</h6>
+                    </div>
+                    <div>
+                        <p>Ut pharetra ipsum nec leo blandit, sit amet tincidunt eros pharetra. Nam sed imperdiet<br>
+                            turpis. In hac habitasse platea dictumst.<br>
+                            Praesent nulla massa, hendrerit vestibulum gravida in, feugiat auctor felis.</p>
+                    </div>
+                    <a id="signup" href="sign up.html">Sign up for Free</a>
+
+                </div><!-- end column -->
+
+            </div><!-- end container -->
+
+        </div><!-- end row -->
+
+    </section>
+
+    <!-- footer
+    ================================================== -->
+    <footer>
+
+        <div class="row">
+
+            <div class="logo">
+                <div class="logo__circle">
+                    SZ
+                </div>
+                <span class="logo__text">Spikizy</span>
+            </div>
+
+            <div class="footcon">
+
+                <div class="column">
+
+                    <div>
+                        <p>Contact Us</p>
+                    </div>
+
+                    <div>
+                        <p><span>Call : +7 708 312 0160<br>
+                                Praesent nulla massa, hendrerit<br>
+                                vestibulum gravida in, feugiat auctor felis.<br>
+                                Email: mielesenn@gmail.com</span></p>
+                    </div>
+                    <div class="container">
+                        <a href="" class="socials"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="" class="socials"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="" class="socials"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="" class="socials"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+
+                </div> <!-- end column -->
+
+                <div class="column">
+
+                    <div>
+                        <p>Explore</p>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li><a href="">Home</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Course</a></li>
+                            <li><a href="">Blog</a></li>
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+
+                </div><!-- end column -->
+
+                <div class="column">
+
+                    <div>
+                        <p>Category</p>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li><a href="">Design</a></li>
+                            <li><a href="">Development</a></li>
+                            <li><a href="">Marketing</a></li>
+                            <li><a href="">Business</a></li>
+                            <li><a href="">Lifestyle</a></li>
+                            <li><a href="">Photography</a></li>
+                            <li><a href="">Music</a></li>
+                        </ul>
+                    </div>
+
+                </div> <!-- end column -->
+
+                <div class="column">
+
+                    <div>
+                        <p>Subscribe</p>
+                    </div>
+
+                    <div>
+                        <p><span>Lorem Ipsum has been them an industry<br>
+                                printer took a galley make book.</span></p>
+                    </div>
+                    <form id="contact">
+                        <input type="text" id="contactform" placeholder="Email here">
+                        <button>Subcribe Now</button>
+                    </form>
+
+                </div> <!-- end column -->
+
+            </div> <!-- end footcon -->
+
+        </div> <!-- end row -->
+
+    </footer>
+
+</body>

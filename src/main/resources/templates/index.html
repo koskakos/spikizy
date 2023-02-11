@@ -4,16 +4,16 @@
 
     <title>Spikizy</title>
 
-    <link rel="stylesheet" href="css/base2.css">
-    <link rel="stylesheet" href="css/main2.css">
+    <link rel="stylesheet" href="../css/base2.css">
+    <link rel="stylesheet" href="../css/main2.css">
 
     <!-- favicon
         ================================================== -->
     <link rel="shortcut icon" href="favicon.jpg">
 
     <script src="https://kit.fontawesome.com/69c62f68f1.js" crossorigin="anonymous"></script>
-    <script src="js/pop.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="../js/pop.js" defer></script>
+    <script src="../js/main.js" defer></script>
 
 </head>
 
@@ -65,12 +65,17 @@
                 You have been missed
             </div>
 
-            <form action="" class="log__form">
-                <input type="text" class="log__user" placeholder=" Email, phone & username">
-                <input type="text" class="log__pass" placeholder=" Password">
+            <form action="" class="log__form" method="post">
+                <input type="text" class="log__user" placeholder=" Email, phone & username" name="username">
+                <div class="pass-box">
+                    <input type="password" placeholder="Password" name="password" class="Pass" minlength="8"
+                        maxlength="30" required>
+                    <i class="fa-solid fa-eye-slash see"></i>
+                </div>
                 <div class="log__forgot" onclick="forgotPop()">
                     Forgot Password?
                 </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input type="submit" class="log__button" value="Sign in">
             </form>
 
@@ -109,14 +114,24 @@
                 a greatful journey
             </div>
 
-            <form action="/register" class="log__form" method="post">
-                <input type="text" placeholder=" Name" name="name">
-                <input type="text" placeholder=" Surname" name="surname">
-                <input type="text" placeholder=" Phone">
-                <input type="text" placeholder=" Email" name="email">
-                <input type="text" placeholder=" Password" name="password">
-                <input type="text" placeholder=" Password again">
-                <input type="submit" class="log__button" value="Sign up">
+            <form action="register" class="log__form" id="Register" method="post">
+                <input type="text" placeholder="Name" name="name" required>
+                <input type="text" placeholder="Surname" name="surname" required>
+                <input type="text" placeholder="Phone" name="phone" required>
+                <input type="email" placeholder="Email" name="email" required>
+                <div class="pass-box">
+                    <input type="password" placeholder="Password" name="password" class="Pass" oninput="isfilled()"
+                        minlength="8" maxlength="30" required>
+                    <i class="fa-solid fa-eye-slash see"></i>
+                </div>
+                <div class="pass-box">
+                    <input type="password" placeholder="Password again" name="repass" class="Pass" oninput="passCheck()"
+                        minlength="8" maxlength="30" required>
+                    <i class="fa-solid fa-eye-slash see"></i>
+                </div>
+                <div id="error" style="color: red;"></div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="submit" class="log__button" value="Sign up" name="submit">
             </form>
 
             <div class="log__register">Already have an account? <button onclick="logPop()">Login</button></div>
@@ -139,12 +154,13 @@
                 Pass the verification
             </div>
 
-            <form action="" class="log__form">
-                <input type="text" class="log__user" placeholder=" Email address">
+            <form action="/forgotpassword" class="log__form" method="post">
+                <input type="email" class="log__user" placeholder=" Email address" name="email">
                 <div class="verify">
                     <input type="checkbox">
                     <span>I’m not a robot</span>
                 </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input type="submit" class="log__button" value="Submit">
             </form>
 
@@ -914,7 +930,7 @@
                         <p><span>Lorem Ipsum has been them an industry<br>
                                 printer took a galley make book.</span></p>
                     </div>
-                    <form id="contact">
+                    <form id="contact" method="post">
                         <input type="text" id="contactform" placeholder="Email here">
                         <button>Subcribe Now</button>
                     </form>

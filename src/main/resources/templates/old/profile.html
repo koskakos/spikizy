@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/coursepage2.css">
+    <script src="https://kit.fontawesome.com/69c62f68f1.js" crossorigin="anonymous"></script>
+    <script src="../js/profile.js" defer></script>
+
+</head>
+
+<body>
+    <!-- header
+    ================================================== -->
+    <header>
+
+        <div class="row">
+
+            <div class="header__wrapper">
+                <div class="logo">
+                    <div class="logo__circle">
+                        SZ
+                    </div>
+                    <span class="logo__text">Spikizy</span>
+                </div>
+
+                <form class="searchform">
+                    <input type="text" class="search" placeholder="What do want to learn?">
+                    <button class="search__button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+
+                <nav>
+
+                    <ul id="nav" class="nav">
+                        <li><a class="navlink" href="#hero">My Courses</a></li>
+                        <li><a class="navlink" href="#courses">Purchaces</a></li>
+                        <li><a class="navlink" href="#category">Help Center</a></li>
+                    </ul>
+
+                </nav>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- coursepage hero
+   ================================================== -->
+
+    <section id="main">
+        <div class="row">
+            <div class="main__wrapper">
+
+                <div class="prof__nav">
+
+                    <div class="prod__nav-items">
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-solid fa-user"></i> Profile</button>
+                        </div>
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-solid fa-camera"></i> Photo</button>
+                        </div>
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-solid fa-lock"></i> Change Password</button>
+                        </div>
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-solid fa-computer"></i> Account Logins</button>
+                        </div>
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-regular fa-credit-card"></i> Payment methods</button>
+                        </div>
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-solid fa-globe"></i> Country and Language</button>
+                        </div>
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-solid fa-shield-halved"></i> Privacy</button>
+                        </div>
+                        <div class="prof__nav-item">
+                            <button class="profbtn"><i class="fa-regular fa-circle-question"></i> Help</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="prof__blocks">
+
+                    <div class="prof__forms prof__block" data-state="closed">
+
+                        <div class="personal__form">
+                            <form action="">
+                                <label for="" class="personal">Personal Info</label>
+                                <input type="text" class="forms__input" placeholder="Name">
+                                <input type="text" class="forms__input" placeholder="Last Name">
+                                <input type="text" class="forms__input" placeholder="Main Specialization">
+                            </form>
+                        </div>
+
+                        <div class="bio__form">
+                            <label for="" class="bio">Bio</label>
+                            <form action="">
+
+                                <textarea name="" id="" cols="30" rows="10" placeholder="Add a short bio"></textarea>
+                                <select>
+                                    <option value="English">English</option>
+                                    <option value="Russian">Russian</option>
+                                    <option value="Kazakh">Kazakh</option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <div class="links__form">
+                            <form action="">
+                                <label for="" class="links">Links</label>
+                                <input type="text" class="forms__input" placeholder="Web-site (http(s)://..)">
+                                <div class="links__container">
+                                    <div class="links__socials">
+                                        http://twitter.com/
+                                    </div>
+                                    <input type="text" class="links__input" placeholder="Twitter Link">
+                                </div>
+                                <div class="links__container">
+                                    <div class="links__socials">
+                                        http://twitter.com/
+                                    </div>
+                                    <input type="text" class="links__input" placeholder="Twitter Link">
+                                </div>
+                                <div class="links__container">
+                                    <div class="links__socials">
+                                        http://twitter.com/
+                                    </div>
+                                    <input type="text" class="links__input" placeholder="Twitter Link">
+                                </div>
+                                <div class="links__container">
+                                    <div class="links__socials">
+                                        http://twitter.com/
+                                    </div>
+                                    <input type="text" class="links__input" placeholder="Twitter Link">
+                                </div>
+                                <div class="links__container">
+                                    <div class="links__socials">
+                                        http://twitter.com/
+                                    </div>
+                                    <input type="text" class="links__input" placeholder="Twitter Link">
+                                </div>
+                                <button class="save">Save</button>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="prof__photo prof__block" data-state="opened">
+
+                        <div class="prof__photo-title">
+                            <span>Profile Photo</span>
+                        </div>
+
+                        <div class="preview">Image Preview</div>
+
+                        <div class="prof__photo-image">
+                            <img src="" class="ava-image">
+                        </div>
+
+                        <div class="Add">Add/Edit image</div>
+
+                        <form action="uploadimg" method="post" enctype="multipart/form-data">
+                            <div class="img-upload">
+                                <input type="text" class="file-name" name="" value="" placeholder="Choose file">
+                                <input type="file" class="defaultBtn" hidden name="img">
+<!--                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+                                <button class="upload">Upload</button>
+                            </div>
+<!--                            <input type="hidden" name="user" value="${user}">-->
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            <button class="save">Save</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- footer
+    ================================================== -->
+    <footer>
+
+        <div class="row">
+
+            <div class="logo">
+                <div class="logo__circle">
+                    SZ
+                </div>
+                <span class="logo__text">Spikizy</span>
+            </div>
+
+            <div class="footcon">
+
+                <div class="column">
+
+                    <div>
+                        <p>Contact Us</p>
+                    </div>
+
+                    <div>
+                        <p><span>Call : +7 708 312 0160<br>
+                                Praesent nulla massa, hendrerit<br>
+                                vestibulum gravida in, feugiat auctor felis.<br>
+                                Email: mielesenn@gmail.com</span></p>
+                    </div>
+                    <div class="container">
+                        <a href="" class="socials"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="" class="socials"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="" class="socials"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="" class="socials"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+
+                </div> <!-- end column -->
+
+                <div class="column">
+
+                    <div>
+                        <p>Explore</p>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li><a href="">Home</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Course</a></li>
+                            <li><a href="">Blog</a></li>
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+
+                </div><!-- end column -->
+
+                <div class="column">
+
+                    <div>
+                        <p>Category</p>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li><a href="">Design</a></li>
+                            <li><a href="">Development</a></li>
+                            <li><a href="">Marketing</a></li>
+                            <li><a href="">Business</a></li>
+                            <li><a href="">Lifestyle</a></li>
+                            <li><a href="">Photography</a></li>
+                            <li><a href="">Music</a></li>
+                        </ul>
+                    </div>
+
+                </div> <!-- end column -->
+
+                <div class="column">
+
+                    <div>
+                        <p>Subscribe</p>
+                    </div>
+
+                    <div>
+                        <p><span>Lorem Ipsum has been them an industry<br>
+                                printer took a galley make book.</span></p>
+                    </div>
+                    <form id="contact">
+                        <input type="text" id="contactform" placeholder="Email here">
+                        <button>Subcribe Now</button>
+                    </form>
+
+                </div> <!-- end column -->
+
+            </div> <!-- end footcon -->
+
+        </div> <!-- end row -->
+
+    </footer>
+
+</body>
+
+</html>

@@ -28,6 +28,14 @@ public class User implements UserDetails {
     @Column(name = "password", length = 1000)
     private String password;
 
+    @Column(name = "phone", length = 15)
+    private String phone;
+
+    @Column(name = "avatarUrl")
+    private String avatarUrl;
+
+    @Column(name = "passwordToken", length = 40)
+    private String passwordToken;
     @Column(name = "enabled")
     private boolean isEnabled = true;
     @Override
