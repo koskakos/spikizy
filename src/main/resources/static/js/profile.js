@@ -1,5 +1,6 @@
 const profileButtons = document.getElementsByClassName('profbtn');
 const profileBlocks = document.getElementsByClassName('prof__block');
+const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
 for (var i = 0; i < profileButtons.length; i++) {
     profileButtons[i].addEventListener("click", function () {
@@ -92,3 +93,36 @@ passboxes.forEach((item, i) => {
         }
     })
 })
+
+
+async function checkOldPassword() {
+    let password = document.getElementById('oldpassword').value;
+    // var params = new URLSearchParams('?id=41&password=12345678');
+    let data = '?password=' + password;
+    let response = await fetch('../gettest' + data, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'X-XSRF-TOKEN': csrfToken,
+            // id: '41',
+            // password: '12345678',
+        },
+        // body: params
+    });
+    let result = await response.json();
+    return result;
+}
+
+el.submit.onclick = (event) => {
+    event.preventDefault();
+
+    if (checkOldPassword()) {
+        document.getElementById("error").innerHTML = "";
+        el.default.click();
+    } else {
+        el.new.value = "";
+        el.repass.value = "";
+        el.old.value = "";
+        document.getElementById("error").innerHTML = "Invalid Current Password"
+    }
+}

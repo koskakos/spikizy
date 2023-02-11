@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
 @EnableWebSecurity
@@ -21,9 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http//.csrf().disable()
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
                 .authorizeRequests()
-                .antMatchers("/css/**", "/Elements/**", "/images/**", "/js/**","/video/**", "/register", "/request/**", "favicon.png")
-                .permitAll()
+                .antMatchers("/css/**", "/Elements/**", "/images/**", "/js/**","/video/**", "/register", "/request/**", "favicon.png", "/forgotpassword"//, "/**")
+                ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
