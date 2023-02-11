@@ -61,11 +61,11 @@ function isfilled() {
 }
 
 function passCheck() {
-    var newp = el.new.value;
-    var repass = el.repass.value;
-    var submit = el.submit;
+    let newp = el.new.value;
+    let repass = el.repass.value;
+    let submit = el.submit;
     submit.disabled = true;
-    var fail = "";
+    let fail = "";
 
     if (newp != repass) fail = "Passwords must be same";
     document.getElementById("error").innerHTML = fail;
@@ -92,11 +92,13 @@ passboxes.forEach((item, i) => {
         }
     })
 })
+
+const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 let oldPass = false;
 async function checkOldPassword() {
-    let password = document.getElementById('password').value;
+    let password = document.getElementById('oldpassword').value;
     // var params = new URLSearchParams('?id=41&password=12345678');
-    let data = '?id=41&password=' + password;
+    let data = '?password=' + password;
     let response = await fetch('../gettest' + data, {
         method: 'POST',
         headers: {
@@ -113,7 +115,6 @@ async function checkOldPassword() {
 
 el.submit.onclick = (event) => {
     event.preventDefault();
-
     if (oldPass) {
         document.getElementById("error").innerHTML = "";
         el.default.click();
@@ -121,6 +122,6 @@ el.submit.onclick = (event) => {
         el.new.value = "";
         el.repass.value = "";
         el.old.value = "";
-        document.getElementById("error").innerHTML = "Invalid Current Password"
+        document.getElementById("error").innerHTML = "Invalid Current Password";
     }
 }

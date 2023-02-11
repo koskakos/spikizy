@@ -253,8 +253,8 @@ ul#nav li {
 	transform-origin: 0.222222vw 0px;
 
 	transition: transform 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-		background 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-		opacity 0.35s ease;
+	background 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+	opacity 0.35s ease;
 }
 
 .menu-toggle {
@@ -286,6 +286,10 @@ ul#nav li {
 	display: flex;
 	flex-direction: column;
 	background: #373749;
+}
+
+.hamburgerlink i {
+	margin: 0 7px 0 0;
 }
 
 .hamburgerlink {

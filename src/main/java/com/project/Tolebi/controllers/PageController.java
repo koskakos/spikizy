@@ -1,7 +1,10 @@
 package com.project.Tolebi.controllers;
 
 //import com.project.Tolebi.helpers.MailSender;
+
+import com.project.Tolebi.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,13 +14,20 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PageController {
 
-//    private final UserService userService;
+    private final UserService userService;
 
     @GetMapping("")
     public String mainPage() {
 //        mailSender.sendSimpleMail("fafsdfas93@mail.ru", "fadgda", "fadfadgad");
-        if(!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) return "index_authorized";
+        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+            return "index_authorized";
         else return "index";
+    }
+
+    @ResponseBody
+    @PostMapping("/gettest")
+    public ResponseEntity test123(@RequestParam("password") String password) {
+        return ResponseEntity.ok(userService.checkPassword(userService.getAuthenticatedId(), password));
     }
 
 //    @GetMapping("da")
