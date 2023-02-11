@@ -99,7 +99,7 @@ async function checkOldPassword() {
     let password = document.getElementById('oldpassword').value;
     // var params = new URLSearchParams('?id=41&password=12345678');
     let data = '?password=' + password;
-    let response = await fetch('../gettest' + data, {
+    let response = await fetch('checkpassword' + data, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -110,6 +110,7 @@ async function checkOldPassword() {
         // body: params
     });
     oldPass = await response.json();
+    console.log(oldPass);
     return oldPass;
 }
 
