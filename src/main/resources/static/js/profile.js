@@ -92,3 +92,35 @@ passboxes.forEach((item, i) => {
         }
     })
 })
+let oldPass = false;
+async function checkOldPassword() {
+    let password = document.getElementById('password').value;
+    // var params = new URLSearchParams('?id=41&password=12345678');
+    let data = '?id=41&password=' + password;
+    let response = await fetch('../gettest' + data, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'X-XSRF-TOKEN': csrfToken,
+            // id: '41',
+            // password: '12345678',
+        },
+        // body: params
+    });
+    oldPass = await response.json();
+    return oldPass;
+}
+
+el.submit.onclick = (event) => {
+    event.preventDefault();
+
+    if (oldPass) {
+        document.getElementById("error").innerHTML = "";
+        el.default.click();
+    } else {
+        el.new.value = "";
+        el.repass.value = "";
+        el.old.value = "";
+        document.getElementById("error").innerHTML = "Invalid Current Password"
+    }
+}
