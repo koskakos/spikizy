@@ -1,7 +1,7 @@
 package com.project.Tolebi.controllers;
 
 //import com.project.Tolebi.helpers.MailSender;
-
+import com.project.Tolebi.models.User;
 import com.project.Tolebi.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,13 @@ public class PageController {
             return "index_authorized";
         else return "index";
     }
+ 
+//    @GetMapping("/test")
+//    public String test() {
+//
+//        userService.checkPassword(41l, "12345678");
+//        return "test";
+//    }
 
     @ResponseBody
     @PostMapping("/gettest")

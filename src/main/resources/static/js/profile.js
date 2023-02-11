@@ -1,5 +1,6 @@
 const profileButtons = document.getElementsByClassName('profbtn');
 const profileBlocks = document.getElementsByClassName('prof__block');
+const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
 for (var i = 0; i < profileButtons.length; i++) {
     profileButtons[i].addEventListener("click", function () {
@@ -123,5 +124,6 @@ el.submit.onclick = (event) => {
         el.repass.value = "";
         el.old.value = "";
         document.getElementById("error").innerHTML = "Invalid Current Password";
+
     }
 }
