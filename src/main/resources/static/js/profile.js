@@ -110,7 +110,7 @@ async function checkOldPassword() {
         // body: params
     });
     oldPass = await response.json();
-    console.log(oldPass);
+    // console.log(oldPass);
     return oldPass;
 }
 

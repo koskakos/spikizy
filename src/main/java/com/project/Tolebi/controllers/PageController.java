@@ -31,11 +31,11 @@ public class PageController {
 //        return "test";
 //    }
 
-    @ResponseBody
-    @PostMapping("/gettest")
-    public ResponseEntity test123(@RequestParam("password") String password) {
-        return ResponseEntity.ok(userService.checkPassword(userService.getAuthenticatedId(), password));
-    }
+//    @ResponseBody
+//    @PostMapping("/gettest")
+//    public ResponseEntity test123(@RequestParam("password") String password) {
+//        return ResponseEntity.ok(userService.checkPassword(userService.getAuthenticatedId(), password));
+//    }
 
 //    @GetMapping("da")
 //    public String da() {

@@ -87,9 +87,10 @@ const regForm = document.getElementById('Register');
 let isUnique = checkEmail();
 async function checkEmail() {
     let email = regForm.email.value;
+    // console.log(email);
     // var params = new URLSearchParams('?id=41&password=12345678');
     let data = '?email=' + email;
-    let response = await fetch('../checkemail' + data, {
+    let response = await fetch('/checkemail' + data, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -100,6 +101,7 @@ async function checkEmail() {
         // body: params
     });
     isUnique = await response.json();
+    console.log(isUnique);
     return isUnique;
 }
 

@@ -39,6 +39,11 @@ public class UserService {
         return passwordEncoder.matches(password, user.getPassword());
     }
 
+    public boolean isUniqueEmail(String email) {
+        User user = userRepository.findUserByEmail(email);
+        return user == null;
+    }
+
     public boolean addUser(User user) {
         // Надо сделать проверку на уникальность
 //        if(userRepository.findUserByEmail(user.getEmail()) != null) return false;

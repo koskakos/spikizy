@@ -2,6 +2,7 @@ package com.project.Tolebi.controllers;
 
 import com.project.Tolebi.models.User;
 import com.project.Tolebi.services.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +52,10 @@ public class UserController {
     public String changePassword(@PathVariable String token) {
 
         return "changePassword";
+    }
+    @ResponseBody
+    @PostMapping("checkemail")
+    public ResponseEntity checkEmail(@RequestParam("email") String email) {
+        return ResponseEntity.ok(userService.isUniqueEmail(email));
     }
 }
