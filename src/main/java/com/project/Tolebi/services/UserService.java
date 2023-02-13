@@ -2,7 +2,7 @@ package com.project.Tolebi.services;
 
 import com.project.Tolebi.helpers.CloudinaryDB;
 import com.project.Tolebi.helpers.EMailSender;
-import com.project.Tolebi.helpers.PasswordTokenGenerator;
+import com.project.Tolebi.helpers.RandomTokenGenerator;
 import com.project.Tolebi.models.User;
 import com.project.Tolebi.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -49,8 +49,8 @@ public class UserService {
 //        if(userRepository.findUserByEmail(user.getEmail()) != null) return false;
         user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        String passwordToken = PasswordTokenGenerator.generate();
-        while(userRepository.findUserByPasswordToken(passwordToken) != null) passwordToken = PasswordTokenGenerator.generate();
+        String passwordToken = RandomTokenGenerator.generate();
+        while(userRepository.findUserByPasswordToken(passwordToken) != null) passwordToken = RandomTokenGenerator.generate();
         user.setPasswordToken(passwordToken);
         userRepository.save(user);
         return true;
@@ -85,10 +85,10 @@ public class UserService {
         CloudinaryDB.destroy(publicId);
     }
     public String uploadImage(MultipartFile file) {
-        String t = PasswordTokenGenerator.generate();
+        String t = RandomTokenGenerator.generate();
         String url = "http://res.cloudinary.com/dxuquaaez/image/upload/" + t;
         while(getUserByAvatarUrl(url) != null) {
-            t = PasswordTokenGenerator.generate();
+            t = RandomTokenGenerator.generate();
             url = "http://res.cloudinary.com/dxuquaaez/image/upload/" + t;
         }
         return CloudinaryDB.upload(file, t);
